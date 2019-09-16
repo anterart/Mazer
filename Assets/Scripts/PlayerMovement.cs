@@ -7,12 +7,40 @@ public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 10f;
     public bool isFlagPicked = false;
-
+    public FixedJoystick joystick;
+    float moveX, moveZ;
     // Update is called once per frame
-    void FixedUpdate()
+
+    private void Start()
     {
-        float moveX = Input.GetAxis("Horizontal");
-        float moveZ = Input.GetAxis("Vertical");
+        joystick = FindObjectOfType<FixedJoystick>();
+    }
+    void Update()
+    {
+        if (joystick.Horizontal >= .2f)
+        {
+            moveX = 1f;
+        }
+        else if (joystick.Horizontal <= -.2f)
+        {
+            moveX = -1f;
+        }
+        else
+        {
+            moveX = 0f;
+        }
+        if (joystick.Vertical >= .2f)
+        {
+            moveZ = 1f;
+        }
+        else if (joystick.Vertical <= -.2f)
+        {
+            moveZ = -1f;
+        }
+        else
+        {
+            moveZ = 0f;
+        }
 
         // Movement
 
