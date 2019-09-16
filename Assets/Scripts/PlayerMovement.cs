@@ -6,8 +6,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 10f;
-
-  
+    public bool isFlagPicked = false;
+    public static bool picked = false;
 
     // Update is called once per frame
     void FixedUpdate()
