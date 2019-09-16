@@ -30,7 +30,7 @@ public class flagScript : MonoBehaviour
             Debug.Log("Touched flag");
             Destroy(gameObject);
             collider.GetComponent<PlayerMovement>().isFlagPicked = true;
-            PlayerMovement.picked = true;
+            GameManager.picked = true;
         }
     }
 }

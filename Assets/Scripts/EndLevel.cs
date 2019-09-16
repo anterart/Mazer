@@ -28,7 +28,7 @@ public class EndLevel : MonoBehaviour
     }
     void Update()
     {
-        if (PlayerMovement.picked && !doorOpened)
+        if (GameManager.picked && !doorOpened)
         {
             doorNumber = random.Next(0, 5);
             switch (doorNumber)
