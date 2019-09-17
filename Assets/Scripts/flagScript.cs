@@ -31,6 +31,7 @@ public class flagScript : MonoBehaviour
             Destroy(gameObject);
             collider.GetComponent<PlayerMovement>().isFlagPicked = true;
             GameManager.picked = true;
+            GameManager.doorPosition = gameObject.transform.position;
         }
     }
 }

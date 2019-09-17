@@ -6,6 +6,8 @@ public class GameManager : MonoBehaviour
 {
     public GameObject Door;
     public static bool picked = false;
+    public static Vector3 doorPosition;
+
     // Start is called before the first frame update
     void Start()
     {
