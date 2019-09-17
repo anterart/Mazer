@@ -1664,7 +1664,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isFlagPicked: 0
-  moveSpeed: 1000
+  moveSpeed: 300
 --- !u!54 &762816732
 Rigidbody:
   m_ObjectHideFlags: 0

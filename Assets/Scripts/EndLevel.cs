@@ -53,7 +53,7 @@ public class EndLevel : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player" && other.GetComponent<PlayerMovement>().isFlagPicked && gameObject.name == "Door" + doorNumber.ToString())
+        if (other.gameObject.tag == "Player" && other.GetComponent<Player>().isFlagPicked && gameObject.name == "Door" + doorNumber.ToString())
         {
             SceneManager.LoadScene(levelToLoad);
         }
