@@ -34,9 +34,9 @@ public class FlagScript : MonoBehaviour
             Destroy(gameObject);
             collider.GetComponent<Player>().isFlagPicked = true;
             gm.picked = true;
-            gm.doorPosition = gameObject.transform.position;
             System.Random random = new System.Random();
             int doorNumber = random.Next(4);
+            gm.doorPosition = doors.transform.GetChild(doorNumber).position;
             Debug.Log(doorNumber);
             doors.transform.GetChild(doorNumber).gameObject.SetActive(true);
         }
