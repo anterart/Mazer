@@ -5,8 +5,18 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public GameObject Door;
-    public static bool picked = false;
-    public static Vector3 doorPosition;
+    private GameObject Doors;
+    public bool picked = false;
+    public Vector3 doorPosition;
+
+    private void Awake()
+    {
+        Doors = GameObject.Find("Doors");
+        foreach (Transform Door in Doors.transform)
+        {
+            Door.gameObject.SetActive(false);
+        }
+    }
 
     // Start is called before the first frame update
     void Start()

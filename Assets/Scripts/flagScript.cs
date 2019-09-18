@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class flagScript : MonoBehaviour
+public class FlagScript : MonoBehaviour
 {
     private float rotationSpeed = 2f;
+    GameObject doors;
+    GameManager gm;
 
     private void Awake()
     {
-
+        doors = GameObject.Find("Doors");
+        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Start is called before the first frame update
@@ -30,8 +33,12 @@ public class flagScript : MonoBehaviour
             Debug.Log("Touched flag");
             Destroy(gameObject);
             collider.GetComponent<Player>().isFlagPicked = true;
-            GameManager.picked = true;
-            GameManager.doorPosition = gameObject.transform.position;
+            gm.picked = true;
+            gm.doorPosition = gameObject.transform.position;
+            System.Random random = new System.Random();
+            int doorNumber = random.Next(4);
+            Debug.Log(doorNumber);
+            doors.transform.GetChild(doorNumber).gameObject.SetActive(true);
         }
     }
 }

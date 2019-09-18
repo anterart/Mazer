@@ -2,26 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pathfinding : MonoBehaviour
+public class Pathfinding
 {
-    GameGrid grid;
-    Transform StartPosition;
-    Transform TargetPosition;
-
-    private void Awake()
+    public static void Astar()
     {
-        grid = GetComponent<GameGrid>();
-    }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

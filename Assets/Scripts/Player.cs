@@ -7,6 +7,12 @@ public class Player : MonoBehaviour
     public bool isFlagPicked = false;
     protected Rigidbody rb;
     // Start is called before the first frame update
+
+    protected virtual void Awake()
+    {
+
+    }
+
     protected virtual void Start()
     {
         rb = GetComponent<Rigidbody>();

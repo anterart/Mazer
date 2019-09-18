@@ -2,23 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AI : MonoBehaviour
+public class AiPlayer : Player
 {
     GameGrid grid;
-    private void Awake()
+    GameManager gm;
+    protected override void Awake()
     {
-        
+        base.Awake();
+        grid = GetComponent<GameGrid>();
+        gm = GetComponent<GameManager>();
     }
 
-    // Start is called before the first frame update
-    void Start()
+
+    protected override void Move()
     {
-        
+        Vector3 startPosition = transform.position;
+        Vector3 targetPosition = GetTargetPosition();
     }
 
-    // Update is called once per frame
-    void Update()
+    private Vector3 GetTargetPosition()
     {
-        
+        return new Vector3(1, 1, 1);
     }
 }
