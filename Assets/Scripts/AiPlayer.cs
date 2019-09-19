@@ -24,4 +24,9 @@ public class AiPlayer : Player
     {
         return new Vector3(1, 1, 1);
     }
+
+    protected override void Shoot()
+    {
+        // need to implement this function and once create a bullet here define it's "owner" member variable as "AI"
+    }
 }
