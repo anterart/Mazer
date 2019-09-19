@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 {
     public bool isFlagPicked = false;
     protected Rigidbody rb;
+    public Vector3 playerPosition;
     // Start is called before the first frame update
 
     protected virtual void Awake()
@@ -16,16 +17,25 @@ public class Player : MonoBehaviour
     protected virtual void Start()
     {
         rb = GetComponent<Rigidbody>();
+        playerPosition = transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
+        playerPosition = transform.position;
         Move();
+        Shoot();
     }
 
     protected virtual void Move()
     {
 
     }
+
+    protected virtual void Shoot()
+    {
+       
+    }
+
 }
