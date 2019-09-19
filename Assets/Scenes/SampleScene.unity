@@ -1665,8 +1665,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isFlagPicked: 0
   playerPosition: {x: 0, y: 0, z: 0}
-  moveSpeed: 30
-  bulletSpeed: 120
+  moveSpeed: 60
+  bulletSpeed: 80
   bulletPrefab: {fileID: 2041220713403811583, guid: d0046440856c5994facc66362c82d861,
     type: 3}
 --- !u!54 &762816732

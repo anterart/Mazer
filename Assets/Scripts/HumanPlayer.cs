@@ -5,7 +5,7 @@ using UnityEngine;
 public class HumanPlayer : Player
 {
     public float moveSpeed = 30f;
-    public float bulletSpeed = 1000f;
+    public float bulletSpeed = 80f;
     FixedJoystick joystick;
     float moveX, moveZ;
     public GameObject bulletPrefab;
