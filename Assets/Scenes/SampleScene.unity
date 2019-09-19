@@ -1665,8 +1665,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isFlagPicked: 0
   playerPosition: {x: 0, y: 0, z: 0}
-  moveSpeed: 60
-  bulletSpeed: 80
   bulletPrefab: {fileID: 2041220713403811583, guid: d0046440856c5994facc66362c82d861,
     type: 3}
 --- !u!54 &762816732
@@ -3002,6 +3000,7 @@ GameObject:
   - component: {fileID: 1756821868}
   - component: {fileID: 1756821867}
   - component: {fileID: 1756821865}
+  - component: {fileID: 1756821866}
   m_Layer: 0
   m_Name: Player2
   m_TagString: Player
@@ -3025,6 +3024,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &1756821866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1756821864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66877f760ce44c24c8d87ad7b2606ac9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isFlagPicked: 0
+  playerPosition: {x: 0, y: 0, z: 0}
 --- !u!136 &1756821867
 CapsuleCollider:
   m_ObjectHideFlags: 0

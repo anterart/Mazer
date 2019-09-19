@@ -32,7 +32,7 @@ public class FlagScript : MonoBehaviour
         {
             Destroy(gameObject);
             collider.GetComponent<Player>().isFlagPicked = true;
-            gm.picked = true;
+            GameManager.picked = true;
             System.Random random = new System.Random();
             int doorNumber = random.Next(4);
             gm.doorPosition = doors.transform.GetChild(doorNumber).position;

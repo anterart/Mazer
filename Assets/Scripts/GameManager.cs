@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public GameObject Door;
     private GameObject Doors;
-    public bool picked = false;
+    public static bool picked = false;
     public Vector3 doorPosition;
 
     private void Awake()

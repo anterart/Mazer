@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class HumanPlayer : Player
 {
-    public float moveSpeed = 30f;
-    public float bulletSpeed = 80f;
     FixedJoystick joystick;
     float moveX, moveZ;
     public GameObject bulletPrefab;
@@ -68,6 +66,8 @@ public class HumanPlayer : Player
                     Vector3 dir = (touchPos - (new Vector3(transform.position.x, transform.position.y, transform.position.z))).normalized;
                     GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity) as GameObject;
                     bullet.GetComponent<Rigidbody>().velocity = dir * bulletSpeed;
+                    bullet.GetComponent<BulletBehavior>().owner = "Human";
+                    System.Threading.Thread.Sleep(250);
                 }
             }
         }
