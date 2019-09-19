@@ -30,7 +30,6 @@ public class FlagScript : MonoBehaviour
     {
         if (collider.gameObject.tag == "Player")
         {
-            Debug.Log("Touched flag");
             Destroy(gameObject);
             collider.GetComponent<Player>().isFlagPicked = true;
             gm.picked = true;
