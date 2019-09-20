@@ -1641,7 +1641,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   gridWorldSize: {x: 61, y: 35}
-  nodeRadius: 0.5
+  nodeRadius: 0.6
   Distance: 0
 --- !u!1 &810939424
 GameObject:
