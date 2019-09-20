@@ -11,6 +11,7 @@ public class HumanPlayer : Player
     {
         base.Start();
         joystick = FindObjectOfType<FixedJoystick>();
+        prefab = gm.GetComponent<GameManager>().humanPlayer;
     }
 
     protected override void Move()
@@ -67,7 +68,7 @@ public class HumanPlayer : Player
                         Vector3 dir = (touchPos - (new Vector3(transform.position.x, transform.position.y, transform.position.z))).normalized;
                         GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity) as GameObject;
                         bullet.GetComponent<Rigidbody>().velocity = dir * bulletSpeed;
-                        bullet.GetComponent<BulletBehavior>().owner = "Human";
+                        bullet.GetComponent<BulletBehavior>().owner = gameObject;
                         //System.Threading.Thread.Sleep(250);
                     }
                 }
@@ -90,7 +91,7 @@ public class HumanPlayer : Player
                     Vector3 dir = (touchPos - (new Vector3(transform.position.x, transform.position.y, transform.position.z))).normalized;
                     GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity) as GameObject;
                     bullet.GetComponent<Rigidbody>().velocity = dir * bulletSpeed;
-                    bullet.GetComponent<BulletBehavior>().owner = "Human";
+                    bullet.GetComponent<BulletBehavior>().owner = gameObject;
                     //System.Threading.Thread.Sleep(250);
                 }
             }

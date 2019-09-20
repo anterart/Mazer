@@ -11,6 +11,9 @@ public class Player : MonoBehaviour
     protected float moveSpeed = 300f;
     protected float bulletSpeed = 40f;
     protected GameManager gm;
+    public Vector3 startingPlyerPosition;
+    public GameObject prefab;
+
     // Start is called before the first frame update
 
     protected virtual void Awake()
@@ -22,6 +25,7 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         playerPosition = transform.position;
+        startingPlyerPosition = transform.position;
     }
 
     // Update is called once per frame
@@ -30,7 +34,6 @@ public class Player : MonoBehaviour
         playerPosition = transform.position;
         Move();
         Shoot();
-        checkDeath();
     }
 
     protected virtual void Move()
@@ -42,21 +45,4 @@ public class Player : MonoBehaviour
     {
        
     }
-
-    private void checkDeath()
-    {
-        if (hp <= 0f)
-        {
-            if (isFlagPicked)
-            {
-                gm.picked = false;
-                isFlagPicked = false;
-                // need to instantiate new flag in this location and re-spawn the dead player (need to check if it is 
-                // a human or a AI one);
-                // Instantiate(FlagScript., transform.position, Quaternion.identity);
-            }
-            Destroy(gameObject);
-        }
-    }
-
 }
