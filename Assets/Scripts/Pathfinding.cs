@@ -20,7 +20,7 @@ public class Pathfinding
             Node CurrentNode = OpenList[0];
             for (int i = 1; i < OpenList.Count; i++)
             {
-                if (OpenList[i].FCost <= CurrentNode.FCost && OpenList[i].hCost < CurrentNode.hCost)
+                if (OpenList[i].FCost < CurrentNode.FCost && OpenList[i].hCost < CurrentNode.hCost)
                 {
                     CurrentNode = OpenList[i];
                 }

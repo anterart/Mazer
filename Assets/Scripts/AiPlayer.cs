@@ -6,6 +6,10 @@ public class AiPlayer : Player
 {
     GameGrid grid;
     GameObject gmObject;
+    Node previouslyChosenNode;
+    public const float pathCalculationDelaySeconds = 0.05f;
+    private float timePassed = 0;
+
     protected override void Awake()
     {
         base.Awake();
@@ -16,33 +20,29 @@ public class AiPlayer : Player
 
     protected override void Move()
     {
-        Vector3 startPosition = transform.position;
-        grid.StartPosition = transform;
-        Vector3 targetPosition = GetTargetPosition();
-        List<Node> path = Pathfinding.Astar(startPosition, targetPosition, grid);
-        grid.FinalPath = path;
-        if (path != null && path.Count > 0)
+        timePassed += Time.deltaTime;
+        Node NextNode = previouslyChosenNode;
+        if (NextNode == null || timePassed > pathCalculationDelaySeconds)
         {
-            Node NextNode = path[0];
+            Vector3 startPosition = transform.position;
+            grid.StartPosition = transform;
+            Vector3 targetPosition = GetTargetPosition();
+            List<Node> path = Pathfinding.Astar(startPosition, targetPosition, grid);
+            grid.FinalPath = path;
+            if (path.Count > 0)
+            {
+                NextNode = path[0];
+                previouslyChosenNode = path[0];
+            }
+            timePassed = 0f;
+        } 
+        if (NextNode != null)
+        {
             Vector3 moveDirection = NextNode.Position - transform.position;
-            float moveX = 0f;
-            float moveZ = 0f;
-            if (moveDirection.x > 0)
-            {
-                moveX = 1f;
-            }
-            if (moveDirection.x < 0)
-            {
-                moveX = -1f;
-            }
-            if (moveDirection.z > 0)
-            {
-                moveZ = 1f;
-            }
-            if (moveDirection.z < 0)
-            {
-                moveZ = -1f;
-            }
+            float moveDirectionSum = Mathf.Abs(moveDirection.x) + Mathf.Abs(moveDirection.z);
+            float moveX = moveDirection.x / moveDirectionSum;
+            float moveZ = moveDirection.z / moveDirectionSum;
+
             Vector3 movement = new Vector3(moveX, 0, moveZ);
             rb.velocity = movement * moveSpeed * Time.deltaTime;
         }
