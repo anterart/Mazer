@@ -9,6 +9,11 @@ public class Pathfinding
         Node StartNode = grid.NodeFromWorldPosition(a_StartPos);
         Node TargetNode = grid.NodeFromWorldPosition(a_TargetPos);
 
+        if (TargetNode.IsWall)
+        {
+            TargetNode = grid.GetNonWallNeighbor(TargetNode);
+        }
+
         List<Node> OpenList = new List<Node>();
         HashSet<Node> ClosedList = new HashSet<Node>();
         List<Node> FinalPath = new List<Node>();

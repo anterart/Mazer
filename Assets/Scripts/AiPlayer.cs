@@ -6,10 +6,7 @@ public class AiPlayer : Player
 {
     GameGrid grid;
     GameObject gmObject;
-    Node previouslyChosenNode;
     public const float pathCalculationDelaySeconds = 0f;
-    private float timePassed = 0;
-    List<Node> path;
 
     protected override void Awake()
     {
@@ -22,28 +19,16 @@ public class AiPlayer : Player
 
     protected override void Move()
     {
-        timePassed += Time.deltaTime;
-        Node NextNode = previouslyChosenNode;
-        if (NextNode == null || timePassed > pathCalculationDelaySeconds)
+
+        Vector3 startPosition = transform.position;
+        grid.StartPosition = transform;
+        Vector3 targetPosition = GetTargetPosition();
+        List<Node> path = Pathfinding.Astar(startPosition, targetPosition, grid);
+        grid.FinalPath = path;
+
+        if (path != null && path.Count > 0)
         {
-            Vector3 startPosition = transform.position;
-            grid.StartPosition = transform;
-            Vector3 targetPosition = GetTargetPosition();
-            List<Node> currentPath = Pathfinding.Astar(startPosition, targetPosition, grid);
-            if (currentPath != null && currentPath.Count > 0)
-            {
-                path = currentPath;
-            }
-            grid.FinalPath = path;
-            if (path.Count > 0)
-            {
-                NextNode = path[0];
-                previouslyChosenNode = path[0];
-            }
-            timePassed = 0f;
-        } 
-        if (NextNode != null)
-        {
+            Node NextNode = path[0];
             Vector3 moveDirection = NextNode.Position - transform.position;
             float moveDirectionSum = Mathf.Abs(moveDirection.x) + Mathf.Abs(moveDirection.z);
             float moveX = moveDirection.x / moveDirectionSum;

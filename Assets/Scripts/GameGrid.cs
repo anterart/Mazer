@@ -157,6 +157,35 @@ public class GameGrid : MonoBehaviour
         return NeighboringNodes;
     }
 
+    public Node GetNonWallNeighbor(Node n)
+    {
+        Node right = grid[n.gridX + 1, n.gridY];
+        if (!right.IsWall)
+        {
+            return right;
+        }
+
+        Node left = grid[n.gridX - 1, n.gridY];
+        if (!left.IsWall)
+        {
+            return left;
+        }
+
+        Node up = grid[n.gridX, n.gridY + 1];
+        if (!up.IsWall)
+        {
+            return up;
+        }
+
+        Node down = grid[n.gridX, n.gridY - 1];
+        if (!down.IsWall)
+        {
+            return down;
+        }
+
+        return n;
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireCube(transform.position, new Vector3(gridWorldSize.x, 1, gridWorldSize.y));
