@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     public Vector3 playerPosition;
     public float hp = 100f;
     protected float moveSpeed = 300f;
-    protected float bulletSpeed = 80f;
+    protected float bulletSpeed = 40f;
     protected GameManager gm;
     // Start is called before the first frame update
 
