@@ -8,13 +8,14 @@ public class Player : MonoBehaviour
     protected Rigidbody rb;
     public Vector3 playerPosition;
     public float hp = 100f;
-    protected float moveSpeed = 30f;
+    protected float moveSpeed = 300f;
     protected float bulletSpeed = 80f;
+    protected GameManager gm;
     // Start is called before the first frame update
 
     protected virtual void Awake()
     {
-
+        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     protected virtual void Start()
@@ -48,7 +49,7 @@ public class Player : MonoBehaviour
         {
             if (isFlagPicked)
             {
-                GameManager.picked = false;
+                gm.picked = false;
                 isFlagPicked = false;
                 // need to instantiate new flag in this location and re-spawn the dead player (need to check if it is 
                 // a human or a AI one);
