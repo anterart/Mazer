@@ -38,7 +38,6 @@ public class FlagScript : MonoBehaviour
             int doorNumber = random.Next(4);
             gm.doorPosition = doors.transform.GetChild(doorNumber).position;
             gm.Door = doors.transform.GetChild(doorNumber).gameObject;
-            Debug.Log(doorNumber);
             doors.transform.GetChild(doorNumber).gameObject.SetActive(true);
         }
     }

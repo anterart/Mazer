@@ -5,10 +5,13 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public GameObject Door;
-    private GameObject Doors;
+    public GameObject Doors;
     public bool picked = false;
     public Vector3 doorPosition;
     public GameObject flagOwner;
+    public GameObject flagPrefab;
+    public GameObject humanPlayer;
+    public GameObject aiPlayer;
 
     private void Awake()
     {

@@ -15,6 +15,7 @@ public class AiPlayer : Player
         base.Awake();
         gmObject = GameObject.Find("GameManager");
         grid = gmObject.GetComponent<GameGrid>();
+        prefab = gm.GetComponent<GameManager>().aiPlayer;
     }
 
 
