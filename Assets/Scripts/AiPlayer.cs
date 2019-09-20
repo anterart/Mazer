@@ -7,8 +7,9 @@ public class AiPlayer : Player
     GameGrid grid;
     GameObject gmObject;
     Node previouslyChosenNode;
-    public const float pathCalculationDelaySeconds = 0.05f;
+    public const float pathCalculationDelaySeconds = 0f;
     private float timePassed = 0;
+    List<Node> path;
 
     protected override void Awake()
     {
@@ -28,7 +29,11 @@ public class AiPlayer : Player
             Vector3 startPosition = transform.position;
             grid.StartPosition = transform;
             Vector3 targetPosition = GetTargetPosition();
-            List<Node> path = Pathfinding.Astar(startPosition, targetPosition, grid);
+            List<Node> currentPath = Pathfinding.Astar(startPosition, targetPosition, grid);
+            if (currentPath != null && currentPath.Count > 0)
+            {
+                path = currentPath;
+            }
             grid.FinalPath = path;
             if (path.Count > 0)
             {
