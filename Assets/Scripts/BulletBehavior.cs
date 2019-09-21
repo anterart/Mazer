@@ -43,7 +43,7 @@ public class BulletBehavior : MonoBehaviour
                     }
                     Player colliderPlayer = collider.GetComponent<Player>();
                     GameObject newPlayer = Instantiate(colliderPlayer.prefab, colliderPlayer.startingPlyerPosition, Quaternion.identity) as GameObject;
-                    Destroy(collider.gameObject);
+                    Destroy(collider);
                 }
             }
         }
