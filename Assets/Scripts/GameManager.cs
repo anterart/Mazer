@@ -12,7 +12,8 @@ public class GameManager : MonoBehaviour
     public GameObject flagPrefab;
     public GameObject humanPlayer;
     public GameObject aiPlayer;
-    private GameObject players;
+    public GameObject players;
+    public LayerMask WallMask;
     public int playersLayer;
 
     private void Awake()
@@ -28,7 +29,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        WallMask = GetComponent<GameGrid>().WallMask;
     }
 
     // Update is called once per frame
@@ -44,7 +45,7 @@ public class GameManager : MonoBehaviour
         {
             if (!GameObject.ReferenceEquals(playerTransform.gameObject, me))
             {
-                if (IsInDirectSight(playerTransform.position, me.transform.position))
+                if (IsInDirectSight(me.transform.position, playerTransform.position))
                 {
                     theySeeMe.Add(playerTransform.gameObject);
                 }
@@ -55,7 +56,9 @@ public class GameManager : MonoBehaviour
 
     private bool IsInDirectSight(Vector3 origin, Vector3 destination)
     {
-        //if (Physics.Raycast())
-        return true;
+        float distance = Vector3.Distance(origin, destination);
+        Vector3 direction = (destination - origin).normalized;
+        bool isSeen = !Physics.Raycast(origin, direction, distance, WallMask);
+        return isSeen;
     }
 }
