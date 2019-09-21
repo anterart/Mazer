@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     public Vector3 startingPlyerPosition;
     public GameObject prefab;
     public GameObject bulletPrefab;
+    public bool isBeingShot = false;
 
     // Start is called before the first frame update
 

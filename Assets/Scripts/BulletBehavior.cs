@@ -7,6 +7,7 @@ public class BulletBehavior : MonoBehaviour
     // Start is called before the first frame update
     public GameObject owner;
     protected GameManager gm;
+    private bool isColliding = false;
     void Start()
     {
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -20,11 +21,13 @@ public class BulletBehavior : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
-        if (collider.gameObject.name != "Ground" && !GameObject.ReferenceEquals(collider.gameObject, owner))
+        if (collider.gameObject.name != "Ground" && collider.tag != "flag" && collider.tag != "bullet" && !GameObject.ReferenceEquals(collider.gameObject, owner) && !isColliding)
         {
+            isColliding = true;
             Destroy(gameObject);
-            if (collider.tag == "Player")
+            if (collider.tag == "Player" && !collider.GetComponent<Player>().isBeingShot)
             {
+                collider.GetComponent<Player>().isBeingShot = true;
                 collider.GetComponent<Player>().hp -= 100;
                 if (collider.GetComponent<Player>().hp <= 0f)
                 {
