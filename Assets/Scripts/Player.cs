@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     protected GameManager gm;
     public Vector3 startingPlyerPosition;
     public GameObject prefab;
+    public GameObject bulletPrefab;
 
     // Start is called before the first frame update
 
@@ -44,5 +45,13 @@ public class Player : MonoBehaviour
     protected virtual void Shoot()
     {
        
+    }
+
+    protected void ShootHelper(Vector3 target)
+    {
+        Vector3 dir = (target - (new Vector3(transform.position.x, transform.position.y, transform.position.z))).normalized;
+        GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity) as GameObject;
+        bullet.GetComponent<Rigidbody>().velocity = dir * bulletSpeed;
+        bullet.GetComponent<BulletBehavior>().owner = gameObject;
     }
 }

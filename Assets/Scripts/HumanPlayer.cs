@@ -6,7 +6,6 @@ public class HumanPlayer : Player
 {
     FixedJoystick joystick;
     float moveX, moveZ;
-    public GameObject bulletPrefab;
     protected override void Start()
     {
         base.Start();
@@ -65,11 +64,7 @@ public class HumanPlayer : Player
                     { // if plane hit...
                         Vector3 touchPos = ray.GetPoint(distance); // get the point
                                                                    // pos has the position in the plane you've touched  
-                        Vector3 dir = (touchPos - (new Vector3(transform.position.x, transform.position.y, transform.position.z))).normalized;
-                        GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity) as GameObject;
-                        bullet.GetComponent<Rigidbody>().velocity = dir * bulletSpeed;
-                        bullet.GetComponent<BulletBehavior>().owner = gameObject;
-                        //System.Threading.Thread.Sleep(250);
+                        base.ShootHelper(touchPos);
                     }
                 }
             }
@@ -88,11 +83,7 @@ public class HumanPlayer : Player
                 { // if plane hit...
                     Vector3 touchPos = ray.GetPoint(distance); // get the point
                                                                // pos has the position in the plane you've touched  
-                    Vector3 dir = (touchPos - (new Vector3(transform.position.x, transform.position.y, transform.position.z))).normalized;
-                    GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity) as GameObject;
-                    bullet.GetComponent<Rigidbody>().velocity = dir * bulletSpeed;
-                    bullet.GetComponent<BulletBehavior>().owner = gameObject;
-                    //System.Threading.Thread.Sleep(250);
+                    base.ShootHelper(touchPos);
                 }
             }
         }

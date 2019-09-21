@@ -1623,6 +1623,7 @@ MonoBehaviour:
   humanPlayer: {fileID: 9176309982766533000, guid: 1ab971111f43a9545b59b8a2814486c9,
     type: 3}
   aiPlayer: {fileID: 516961643798882607, guid: f86aec2a93883fd47842aa1b1215d054, type: 3}
+  playersLayer: 0
 --- !u!114 &792016749
 MonoBehaviour:
   m_ObjectHideFlags: 0
