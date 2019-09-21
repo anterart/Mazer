@@ -48,8 +48,11 @@ public class AiPlayer : Player
                 grid.TargetPosition = gm.Door.transform;
                 return gm.doorPosition;
                 }
-            grid.TargetPosition = gm.flagOwner.transform;
-            return gm.flagOwner.transform.position;
+            if (gm.flagOwner != null)
+            {
+                grid.TargetPosition = gm.flagOwner.transform;
+                return gm.flagOwner.transform.position;
+            }
         }
         grid.TargetPosition = GameObject.Find("Flag").transform;
         return GameObject.Find("Flag").gameObject.transform.position;

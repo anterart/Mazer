@@ -28,7 +28,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 516961643798882607}
-  m_LocalRotation: {x: -0, y: 0.008726558, z: -0, w: 0.999962}
+  m_LocalRotation: {x: 0, y: 0.008726558, z: 0, w: 0.999962}
   m_LocalPosition: {x: 25.3, y: 0.5, z: -12.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -126,3 +126,7 @@ MonoBehaviour:
   playerPosition: {x: 0, y: 0, z: 0}
   hp: 100
   startingPlyerPosition: {x: 0, y: 0, z: 0}
+  prefab: {fileID: 0}
+  bulletPrefab: {fileID: 2041220713403811583, guid: d0046440856c5994facc66362c82d861,
+    type: 3}
+  isBeingShot: 0
