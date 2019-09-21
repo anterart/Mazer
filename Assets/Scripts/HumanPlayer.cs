@@ -4,13 +4,28 @@ using UnityEngine;
 
 public class HumanPlayer : Player
 {
+    public Vector3 mainCameraOffset;
+    public Vector3 mainCameraRotationOffset;
     FixedJoystick joystick;
     float moveX, moveZ;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        moveSpeed = 300f;
+    }
     protected override void Start()
     {
         base.Start();
+        Camera.main.transform.eulerAngles = mainCameraRotationOffset;
         joystick = FindObjectOfType<FixedJoystick>();
         prefab = gm.GetComponent<GameManager>().humanPlayer;
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+        MoveCamera();
     }
 
     protected override void Move()
@@ -87,5 +102,10 @@ public class HumanPlayer : Player
                 }
             }
         }
+    }
+
+    private void MoveCamera()
+    {
+        Camera.main.transform.position = transform.position + mainCameraOffset;
     }
 }

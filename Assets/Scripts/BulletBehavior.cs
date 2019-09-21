@@ -42,8 +42,9 @@ public class BulletBehavior : MonoBehaviour
                         // need to re-spawn the dead player (need to check if it is a human or a AI one);
                     }
                     Player colliderPlayer = collider.GetComponent<Player>();
-                    GameObject newPlayer = Instantiate(colliderPlayer.prefab, colliderPlayer.startingPlyerPosition, Quaternion.identity) as GameObject;
                     Destroy(collider.gameObject);
+                    GameObject newPlayer = Instantiate(colliderPlayer.prefab, colliderPlayer.startingPlyerPosition, Quaternion.identity) as GameObject;
+                    newPlayer.transform.SetParent(gm.players.transform);
                 }
             }
         }

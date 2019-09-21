@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     protected Rigidbody rb;
     public Vector3 playerPosition;
     public float hp = 100f;
-    protected float moveSpeed = 300f;
+    protected float moveSpeed;
     protected float bulletSpeed = 40f;
     protected GameManager gm;
     public Vector3 startingPlyerPosition;
@@ -30,7 +30,7 @@ public class Player : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         playerPosition = transform.position;
         Move();

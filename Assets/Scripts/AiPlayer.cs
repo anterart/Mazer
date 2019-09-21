@@ -6,11 +6,11 @@ public class AiPlayer : Player
 {
     GameGrid grid;
     GameObject gmObject;
-    public const float pathCalculationDelaySeconds = 0f;
 
     protected override void Awake()
     {
         base.Awake();
+        moveSpeed = 300f;
         gmObject = GameObject.Find("GameManager");
         grid = gmObject.GetComponent<GameGrid>();
         prefab = gm.GetComponent<GameManager>().aiPlayer;
@@ -57,6 +57,12 @@ public class AiPlayer : Player
 
     protected override void Shoot()
     {
-        // need to implement this function and once create a bullet here define it's "owner" member variable as "AI"
+        List<GameObject> theySeeMe = gm.GetPlayersInDirectSight(gameObject);
+        if (theySeeMe.Count > 0)
+        {
+            theySeeMe.Sort((x, y) => Vector3.Distance(gameObject.transform.position, x.transform.position).CompareTo(Vector3.Distance(gameObject.transform.position, y.transform.position)));
+            GameObject closestEnemy = theySeeMe[0];
+            base.ShootHelper(closestEnemy.transform.position);
+        }
     }
 }
