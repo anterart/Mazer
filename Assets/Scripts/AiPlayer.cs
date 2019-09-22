@@ -6,6 +6,10 @@ public class AiPlayer : Player
 {
     GameGrid grid;
     GameObject gmObject;
+    public float shootingRadiusThreshold;
+    public float shootingDelayInSeconds;
+    public float shootingNoiseFactor;
+    private float shootingTimePassed = 0;
 
     protected override void Awake()
     {
@@ -60,12 +64,26 @@ public class AiPlayer : Player
 
     protected override void Shoot()
     {
-        List<GameObject> theySeeMe = gm.GetPlayersInDirectSight(gameObject);
-        if (theySeeMe.Count > 0)
+        if (shootingTimePassed > shootingDelayInSeconds)
         {
-            theySeeMe.Sort((x, y) => Vector3.Distance(gameObject.transform.position, x.transform.position).CompareTo(Vector3.Distance(gameObject.transform.position, y.transform.position)));
-            GameObject closestEnemy = theySeeMe[0];
-            base.ShootHelper(closestEnemy.transform.position);
+            shootingTimePassed = 0;
+            List<GameObject> theySeeMe = gm.GetPlayersInDirectSight(gameObject);
+            if (theySeeMe.Count > 0)
+            {
+                theySeeMe.Sort((x, y) => Vector3.Distance(gameObject.transform.position, x.transform.position).CompareTo(Vector3.Distance(gameObject.transform.position, y.transform.position)));
+                GameObject closestEnemy = theySeeMe[0];
+                if (Vector3.Distance(closestEnemy.transform.position, gameObject.transform.position) <= shootingRadiusThreshold)
+                {
+                    float shootingNoiseX = Random.Range(- shootingNoiseFactor / 2, shootingNoiseFactor / 2);
+                    float shootingNoiseZ = Random.Range(-shootingNoiseFactor / 2, shootingNoiseFactor / 2);
+                    Vector3 shootingNoise = new Vector3(shootingNoiseX, 0, shootingNoiseZ);
+                    base.ShootHelper(closestEnemy.transform.position + shootingNoise);
+                }
+            }
+        }
+        else
+        {
+            shootingTimePassed += Time.deltaTime;
         }
     }
 }
