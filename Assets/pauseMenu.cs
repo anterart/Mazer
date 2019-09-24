@@ -20,28 +20,33 @@ public class pauseMenu : MonoBehaviour
     }
 
     public void Resume()
-    {
+    {  
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
+        GameObject[] bullets = GameObject.FindGameObjectsWithTag("bullet");
+        foreach (GameObject bullet in bullets)
+            GameObject.Destroy(bullet);
     }
 
     public void Pause()
     {
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
-
+        GameObject[] bullets = GameObject.FindGameObjectsWithTag("bullet");
+        foreach (GameObject bullet in bullets)
+            GameObject.Destroy(bullet);
     }
 
     public void Menu()
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene("Scenes/MainMenu");
-
+        
     }
 
     public void Quit()
     {
         Application.Quit();
-
+        
     }
 }
