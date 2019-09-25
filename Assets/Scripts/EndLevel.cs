@@ -11,7 +11,16 @@ public class EndLevel : MonoBehaviour
     {
         if (other.gameObject.tag == "Player" && other.GetComponent<Player>().isFlagPicked)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            if (other.gameObject.name == "Player1")
+            {
+                // load level success scene
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+            }
+            else if (other.gameObject.name == "Player2")
+            {
+                // load level fail scene
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            }
         }
     }
 }
