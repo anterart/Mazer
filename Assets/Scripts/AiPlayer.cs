@@ -42,6 +42,16 @@ public class AiPlayer : Player
             Vector3 movement = new Vector3(moveX, 0, moveZ);
             rb.velocity = movement * moveSpeed * Time.deltaTime;
         }
+        else
+        {
+            Vector3 moveDirection = targetPosition - transform.position;
+            float moveDirectionSum = Mathf.Abs(moveDirection.x) + Mathf.Abs(moveDirection.z);
+            float moveX = moveDirection.x / moveDirectionSum;
+            float moveZ = moveDirection.z / moveDirectionSum;
+
+            Vector3 movement = new Vector3(moveX, 0, moveZ);
+            rb.velocity = movement * moveSpeed * Time.deltaTime;
+        }
     }
 
     private Vector3 GetTargetPosition()
