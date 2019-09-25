@@ -74,5 +74,6 @@ public class BulletBehavior : MonoBehaviour
                 }
             }
         }
+        collider.GetComponent<Player>().isBeingShot = false;
     }
 }
