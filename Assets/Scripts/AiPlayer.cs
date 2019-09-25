@@ -18,6 +18,7 @@ public class AiPlayer : Player
         gmObject = GameObject.Find("GameManager");
         grid = gmObject.GetComponent<GameGrid>();
         prefab = gm.GetComponent<GameManager>().aiPlayer;
+        isHuman = false;
     }
 
 

@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     public GameObject prefab;
     public GameObject bulletPrefab;
     public bool isBeingShot = false;
-
+    public bool isHuman;
     // Start is called before the first frame update
 
     protected virtual void Awake()

@@ -13,6 +13,7 @@ public class HumanPlayer : Player
     {
         base.Awake();
         moveSpeed = 300f;
+        isHuman = true;
     }
     protected override void Start()
     {
