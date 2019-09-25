@@ -7,6 +7,8 @@ TagManager:
   - coin
   - flag
   - bullet
+  - Wall
+  - bar
   layers:
   - Default
   - TransparentFX

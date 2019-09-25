@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BulletBehavior : MonoBehaviour
 {
@@ -25,13 +26,31 @@ public class BulletBehavior : MonoBehaviour
         {
             isColliding = true;
             Destroy(gameObject);
-            if (collider.tag == "Player" && !collider.GetComponent<Player>().isBeingShot)
+            if (collider.tag == "Player" && !collider.GetComponent<Player>().isBeingShot) // bug here - isBeingShot turns true but never return to false therefore only first shot takes affect, need to fix this
             {
                 collider.GetComponent<Player>().isBeingShot = true;
-                collider.GetComponent<Player>().hp -= 100;
-                if (collider.GetComponent<Player>().hp <= 0f)
+                collider.GetComponent<Player>().hp -= 30f;
+                GameObject imageObject = GameObject.FindGameObjectWithTag("bar");
+                Image healthImage = imageObject.GetComponent<Image>();
+                if (collider.GetComponent<Player>().isHuman) // check if human player
                 {
-                    if (collider.GetComponent<Player>().isFlagPicked)
+                    imageObject = GameObject.FindGameObjectWithTag("bar");
+                    if (imageObject != null)
+                    {
+                        healthImage = imageObject.GetComponent<Image>();
+                        if (collider.GetComponent<Player>().hp >= 0f) // check if life is above zero in current round to fill slider accordingly
+                        {
+                            healthImage.fillAmount = collider.GetComponent<Player>().hp / 100f;
+                        }
+                        else
+                        {
+                            healthImage.fillAmount = 0f;
+                        }
+                    }
+                }
+                if (collider.GetComponent<Player>().hp <= 0f) // check if player is dead
+                {
+                    if (collider.GetComponent<Player>().isFlagPicked) // check if player got the flag
                     {
                         gm.picked = false;
                         collider.GetComponent<Player>().isFlagPicked = false;
@@ -42,7 +61,11 @@ public class BulletBehavior : MonoBehaviour
                         gm.flagOwner = null;
                         GameObject flag = Instantiate(gm.flagPrefab, collider.transform.position, Quaternion.identity) as GameObject;
                         flag.name = "Flag";
-                        // need to re-spawn the dead player (need to check if it is a human or a AI one);
+                    }
+                    if (imageObject != null && collider.GetComponent<Player>().isHuman) // check if player is dead human player
+                    {
+                        healthImage = imageObject.GetComponent<Image>();
+                        healthImage.fillAmount = 1f;
                     }
                     Player colliderPlayer = collider.GetComponent<Player>();
                     Destroy(collider.gameObject);
@@ -51,6 +74,5 @@ public class BulletBehavior : MonoBehaviour
                 }
             }
         }
-        
     }
 }
