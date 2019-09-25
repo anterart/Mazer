@@ -6,9 +6,9 @@ public class AiPlayer : Player
 {
     GameGrid grid;
     GameObject gmObject;
-    public float shootingRadiusThreshold;
-    public float shootingDelayInSeconds;
-    public float shootingNoiseFactor;
+    public static float shootingRadiusThreshold = 17f;
+    public static float shootingDelayInSeconds = 1f;
+    public static float shootingNoiseFactor = 5f;
     private float shootingTimePassed = 0;
 
     protected override void Awake()
