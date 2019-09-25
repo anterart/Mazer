@@ -72,8 +72,8 @@ public class BulletBehavior : MonoBehaviour
                     GameObject newPlayer = Instantiate(colliderPlayer.prefab, colliderPlayer.startingPlyerPosition, Quaternion.identity) as GameObject;
                     newPlayer.transform.SetParent(gm.players.transform);
                 }
+                collider.GetComponent<Player>().isBeingShot = false;
             }
         }
-        collider.GetComponent<Player>().isBeingShot = false;
     }
 }

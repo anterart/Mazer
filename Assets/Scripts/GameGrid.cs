@@ -183,6 +183,30 @@ public class GameGrid : MonoBehaviour
             return down;
         }
 
+        Node upRight = grid[n.gridX + 1, n.gridY + 1];
+        if (!upRight.IsWall)
+        {
+            return upRight;
+        }
+
+        Node upLeft = grid[n.gridX - 1, n.gridY + 1];
+        if (!upLeft.IsWall)
+        {
+            return upLeft;
+        }
+
+        Node downRight = grid[n.gridX + 1, n.gridY - 1];
+        if (!downRight.IsWall)
+        {
+            return downRight;
+        }
+
+        Node downLeft = grid[n.gridX - 1, n.gridY - 1];
+        if (!downLeft.IsWall)
+        {
+            return downLeft;
+        }
+
         return n;
     }
 
