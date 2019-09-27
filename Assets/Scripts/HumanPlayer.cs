@@ -8,6 +8,8 @@ public class HumanPlayer : Player
     public Vector3 mainCameraRotationOffset;
     FixedJoystick joystick;
     float moveX, moveZ;
+    Animator anim;
+    private Vector3 lastDirection;
 
     protected override void Awake()
     {
@@ -21,6 +23,7 @@ public class HumanPlayer : Player
         Camera.main.transform.eulerAngles = mainCameraRotationOffset;
         joystick = FindObjectOfType<FixedJoystick>();
         prefab = gm.GetComponent<GameManager>().humanPlayer;
+        anim = GetComponentInChildren<Animator>();
     }
 
     protected override void Update()
@@ -31,6 +34,14 @@ public class HumanPlayer : Player
 
     protected override void Move()
     {
+        if (joystick.Horizontal != 0 || joystick.Vertical != 0)
+        {
+            anim.SetBool("walking", true);
+        }
+        else
+        {
+            anim.SetBool("walking", false);
+        }
         if (joystick.Horizontal >= .2f)
         {
             moveX = 1f;
@@ -58,6 +69,10 @@ public class HumanPlayer : Player
 
         // Movement
         Vector3 movement = new Vector3(moveX, 0f, moveZ);
+        if (anim.GetBool("walking"))
+        {
+            transform.eulerAngles = new Vector3(0, Mathf.Atan2(joystick.Horizontal, joystick.Vertical) * 180 / Mathf.PI, 0); // Face the walking direction
+        }
         rb.velocity = movement * moveSpeed * Time.deltaTime;
     }
 
@@ -78,6 +93,8 @@ public class HumanPlayer : Player
                     float distance = 0; // this will return the distance from the camera
                     if (plane.Raycast(ray, out distance))
                     { // if plane hit...
+                        anim.SetBool("shoot", true);
+                        Invoke("setShootFalse", 0.7f);
                         Vector3 touchPos = ray.GetPoint(distance); // get the point
                                                                    // pos has the position in the plane you've touched  
                         base.ShootHelper(touchPos);
@@ -97,12 +114,19 @@ public class HumanPlayer : Player
                 float distance = 0; // this will return the distance from the camera
                 if (plane.Raycast(ray, out distance))
                 { // if plane hit...
+                    anim.SetBool("shoot", true);
+                    Invoke("setShootFalse", 0.7f);
                     Vector3 touchPos = ray.GetPoint(distance); // get the point
                                                                // pos has the position in the plane you've touched  
                     base.ShootHelper(touchPos);
                 }
             }
         }
+    }
+
+    private void setShootFalse()
+    {
+        anim.SetBool("shoot", false);
     }
 
     private void MoveCamera()

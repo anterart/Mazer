@@ -51,7 +51,7 @@ public class Player : MonoBehaviour
     protected void ShootHelper(Vector3 target)
     {
         Vector3 dir = (target - (new Vector3(transform.position.x, transform.position.y, transform.position.z))).normalized;
-        GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity) as GameObject;
+        GameObject bullet = Instantiate(bulletPrefab, transform.position + new Vector3(0f, 0.5f, 0), Quaternion.identity) as GameObject;
         bullet.GetComponent<Rigidbody>().velocity = dir * bulletSpeed;
         bullet.GetComponent<BulletBehavior>().owner = gameObject;
     }

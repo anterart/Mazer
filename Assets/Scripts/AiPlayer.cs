@@ -10,6 +10,7 @@ public class AiPlayer : Player
     public static float shootingDelayInSeconds = 1f;
     public static float shootingNoiseFactor = 5f;
     private float shootingTimePassed = 0;
+    Animator anim;
 
     protected override void Awake()
     {
@@ -19,18 +20,18 @@ public class AiPlayer : Player
         grid = gmObject.GetComponent<GameGrid>();
         prefab = gm.GetComponent<GameManager>().aiPlayer;
         isHuman = false;
+        anim = GetComponentInChildren<Animator>();
     }
 
 
     protected override void Move()
     {
-
+        anim.SetBool("walking", true);
         Vector3 startPosition = transform.position;
         grid.StartPosition = transform;
         Vector3 targetPosition = GetTargetPosition();
         List<Node> path = Pathfinding.Astar(startPosition, targetPosition, grid);
         grid.FinalPath = path;
-
         if (path != null && path.Count > 0)
         {
             Node NextNode = path[0];
@@ -41,6 +42,8 @@ public class AiPlayer : Player
 
             Vector3 movement = new Vector3(moveX, 0, moveZ);
             rb.velocity = movement * moveSpeed * Time.deltaTime;
+            Vector3 lookAt = new Vector3(NextNode.Position.x, transform.position.y, NextNode.Position.z);
+            transform.LookAt(lookAt);
         }
         else
         {
@@ -51,6 +54,8 @@ public class AiPlayer : Player
 
             Vector3 movement = new Vector3(moveX, 0, moveZ);
             rb.velocity = movement * moveSpeed * Time.deltaTime;
+            Vector3 lookAt = new Vector3(targetPosition.x, transform.position.y, targetPosition.z);
+            transform.LookAt(lookAt);
         }
     }
 
