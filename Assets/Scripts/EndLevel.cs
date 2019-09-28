@@ -13,6 +13,11 @@ public class EndLevel : MonoBehaviour
         {
             if (other.GetComponent<Player>().isHuman)
             {
+                if (SceneManager.GetActiveScene().buildIndex == GameManager.highetSceneReached)
+                {
+                    GameManager.highetSceneReached += 3;
+                    GameManager.highestLevelReached += 1;
+                }
                 // load level success scene
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
             }

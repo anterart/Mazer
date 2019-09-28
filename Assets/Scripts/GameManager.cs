@@ -16,7 +16,8 @@ public class GameManager : MonoBehaviour
     public LayerMask WallMask;
     public int playersLayer;
     public static int nextScence = 0;
-
+    public static int highestLevelReached = 1;
+    public static int highetSceneReached = 1;
     private void Awake()
     {
         Doors = GameObject.Find("Doors");
