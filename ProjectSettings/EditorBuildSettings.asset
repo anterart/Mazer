@@ -17,4 +17,40 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level1Success.unity
     guid: 7bd7230d8ed82044594ede54a072aad3
+  - enabled: 1
+    path: Assets/Scenes/SampleScene 1.unity
+    guid: 9d386a72d5b39164f88a6071eae81b9b
+  - enabled: 1
+    path: Assets/Scenes/Level2Fail.unity
+    guid: 3705285e3b79b164c996229d2a225f46
+  - enabled: 1
+    path: Assets/Scenes/Level2Success.unity
+    guid: 014110f566e1ab44c8146c1a19bde05e
+  - enabled: 1
+    path: Assets/Scenes/SampleScene 2.unity
+    guid: f578d709c65214046b99b9f61b55f8af
+  - enabled: 1
+    path: Assets/Scenes/Level3Fail.unity
+    guid: c99b9900724461f46b47c8585c42a730
+  - enabled: 1
+    path: Assets/Scenes/Level3Success.unity
+    guid: ad28f2496dde79c458076d10bb356dc4
+  - enabled: 1
+    path: Assets/Scenes/SampleScene 3.unity
+    guid: a33f0acd3b81ba246a85542b8863639b
+  - enabled: 1
+    path: Assets/Scenes/Level4Fail.unity
+    guid: cde8bd7b17bc7304b83d3f43451ec388
+  - enabled: 1
+    path: Assets/Scenes/Level4Success.unity
+    guid: 9f3c29ca99f3f2e4bb4f65a0a4ca2cc1
+  - enabled: 1
+    path: Assets/Scenes/SampleScene 4.unity
+    guid: 7be2b9d7a22bbf94ea198f42510814ef
+  - enabled: 1
+    path: Assets/Scenes/Level5Fail.unity
+    guid: e6026a3aa249f14498ace89c60c1da30
+  - enabled: 1
+    path: Assets/Scenes/Level5Success.unity
+    guid: c10b483b3b657f74fb125a5bb355c0ff
   m_configObjects: {}
