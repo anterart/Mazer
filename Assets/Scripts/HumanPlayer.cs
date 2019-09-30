@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class HumanPlayer : Player
 {
@@ -80,7 +81,8 @@ public class HumanPlayer : Player
     {
         if (Input.touchCount == 1)
         {
-            if (Input.GetTouch(0).phase == TouchPhase.Began)
+
+            if (Input.GetTouch(0).phase == TouchPhase.Began && !EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
             {
                 if (joystick.Horizontal == 0f && joystick.Vertical == 0f)
                 {
@@ -103,7 +105,7 @@ public class HumanPlayer : Player
         }
         else if (Input.touchCount == 2)
         {
-            if (Input.GetTouch(1).phase == TouchPhase.Began)
+            if (Input.GetTouch(1).phase == TouchPhase.Began && !EventSystem.current.IsPointerOverGameObject(Input.GetTouch(1).fingerId))
             {
                 // create ray from the camera and passing through the touch position:
                 Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(1).position);
