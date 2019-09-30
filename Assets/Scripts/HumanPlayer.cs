@@ -78,7 +78,6 @@ public class HumanPlayer : Player
 
     protected override void Shoot()
     {
-        base.Shoot();
         if (Input.touchCount == 1)
         {
             if (Input.GetTouch(0).phase == TouchPhase.Began)

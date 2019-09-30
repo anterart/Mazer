@@ -16,11 +16,13 @@ public class Player : MonoBehaviour
     public GameObject bulletPrefab;
     public bool isBeingShot = false;
     public bool isHuman;
+    private AudioSource audioSrc;
     // Start is called before the first frame update
 
     protected virtual void Awake()
     {
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+        audioSrc = GetComponent<AudioSource>();
     }
 
     protected virtual void Start()
@@ -45,11 +47,12 @@ public class Player : MonoBehaviour
 
     protected virtual void Shoot()
     {
-       
+        
     }
 
     protected void ShootHelper(Vector3 target)
     {
+        audioSrc.Play();
         Vector3 dir = (target - (new Vector3(transform.position.x, transform.position.y, transform.position.z))).normalized;
         GameObject bullet = Instantiate(bulletPrefab, transform.position + new Vector3(0f, 0.5f, 0), Quaternion.identity) as GameObject;
         bullet.GetComponent<Rigidbody>().velocity = dir * bulletSpeed;
