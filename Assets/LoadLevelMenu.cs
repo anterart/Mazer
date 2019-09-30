@@ -19,7 +19,7 @@ public class LoadLevelMenu : MonoBehaviour
 
     public void Level1()
     {
-        if (GameManager.highestLevelReached >= 1)
+        if (MainMenu.highestLevelReached >= 1)
         {
             SceneManager.LoadScene("Scenes/SampleScene");
         }
@@ -27,7 +27,7 @@ public class LoadLevelMenu : MonoBehaviour
 
     public void Level2()
     {
-        if (GameManager.highestLevelReached >= 2)
+        if (MainMenu.highestLevelReached >= 2)
         {
             SceneManager.LoadScene("Scenes/SampleScene 1");
         }
@@ -35,7 +35,7 @@ public class LoadLevelMenu : MonoBehaviour
 
     public void Level3()
     {
-        if (GameManager.highestLevelReached >= 3)
+        if (MainMenu.highestLevelReached >= 3)
         {
             SceneManager.LoadScene("Scenes/SampleScene 2");
         }
@@ -43,7 +43,7 @@ public class LoadLevelMenu : MonoBehaviour
 
     public void Level4()
     {
-        if (GameManager.highestLevelReached >= 4)
+        if (MainMenu.highestLevelReached >= 4)
         {
             SceneManager.LoadScene("Scenes/SampleScene 3");
         }
@@ -51,7 +51,7 @@ public class LoadLevelMenu : MonoBehaviour
 
     public void Level5()
     {
-        if (GameManager.highestLevelReached >= 5)
+        if (MainMenu.highestLevelReached >= 5)
         {
             SceneManager.LoadScene("Scenes/SampleScene 4");
         }
