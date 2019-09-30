@@ -8,10 +8,12 @@ public class BulletBehavior : MonoBehaviour
     // Start is called before the first frame update
     public GameObject owner;
     protected GameManager gm;
+    private GameGrid grid;
     private bool isColliding = false;
     void Start()
     {
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+        grid = gm.GetComponent<GameGrid>();
     }
 
     // Update is called once per frame
@@ -69,7 +71,8 @@ public class BulletBehavior : MonoBehaviour
                     }
                     Player colliderPlayer = collider.GetComponent<Player>();
                     Destroy(collider.gameObject);
-                    GameObject newPlayer = Instantiate(colliderPlayer.prefab, colliderPlayer.startingPlyerPosition, Quaternion.identity) as GameObject;
+                    Vector3 randomPosition = grid.GetRandomFreeNode();
+                    GameObject newPlayer = Instantiate(colliderPlayer.prefab, new Vector3(randomPosition.x, collider.transform.position.y, randomPosition.z), Quaternion.identity) as GameObject;
                     newPlayer.transform.SetParent(gm.players.transform);
                 }
                 collider.GetComponent<Player>().isBeingShot = false;

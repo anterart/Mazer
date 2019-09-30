@@ -12,6 +12,7 @@ public class GameGrid : MonoBehaviour
     public float Distance;
 
     Node[,] grid;
+    public List<Node> freeNodes = new List<Node>();
     public List<Node> FinalPath;
 
     float nodeDiameter;
@@ -44,6 +45,27 @@ public class GameGrid : MonoBehaviour
                 grid[x, y] = new Node(Wall, worldPoint, x, y);
             }
         }
+        CreateFreeNodesList();
+    }
+
+    void CreateFreeNodesList()
+    {
+        for (int x = 0; x < gridSizeX; x++)
+        {
+            for (int y = 0; y < gridSizeY; y++)
+            {
+                if (!grid[x, y].IsWall)
+                {
+                    freeNodes.Add(grid[x, y]);
+                }
+            }
+        }
+    }
+
+    public Vector3 GetRandomFreeNode()
+    {
+        System.Random random = new System.Random();
+        return freeNodes[random.Next(freeNodes.Count)].Position;
     }
 
     public Node NodeFromWorldPosition(Vector3 a_WorldPosition)
