@@ -11,7 +11,7 @@ public class Pathfinding
 
         if (TargetNode.IsWall)
         {
-            TargetNode = grid.GetNonWallNeighbor(TargetNode);
+            TargetNode = grid.GetNonWallNeighbor(TargetNode, a_TargetPos);
         }
 
         List<Node> OpenList = new List<Node>();

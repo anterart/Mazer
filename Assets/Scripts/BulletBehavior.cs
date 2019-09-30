@@ -61,7 +61,14 @@ public class BulletBehavior : MonoBehaviour
                             Door.gameObject.SetActive(false);
                         }
                         gm.flagOwner = null;
-                        GameObject flag = Instantiate(gm.flagPrefab, collider.transform.position, Quaternion.identity) as GameObject;
+                        Vector3 newFlagPosition = collider.transform.position;
+                        Node playerPositionNode = grid.NodeFromWorldPosition(newFlagPosition);
+                        if (playerPositionNode.IsWall)
+                        {
+                            newFlagPosition = grid.GetNonWallNeighbor(playerPositionNode, collider.transform.position).Position;
+                        }
+                        newFlagPosition.y = 1.52f;
+                        GameObject flag = Instantiate(gm.flagPrefab, newFlagPosition, Quaternion.identity) as GameObject;
                         flag.name = "Flag";
                     }
                     if (imageObject != null && collider.GetComponent<Player>().isHuman) // check if player is dead human player

@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
         return theySeeMe;
     }
 
-    private bool IsInDirectSight(Vector3 origin, Vector3 destination)
+    public bool IsInDirectSight(Vector3 origin, Vector3 destination)
     {
         float distance = Vector3.Distance(origin, destination);
         Vector3 direction = (destination - origin).normalized;

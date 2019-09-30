@@ -17,9 +17,11 @@ public class GameGrid : MonoBehaviour
 
     float nodeDiameter;
     int gridSizeX, gridSizeY;
+    private GameManager gm;
     // Start is called before the first frame update
     void Start()
     {
+        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
         nodeDiameter = nodeRadius * 2;
         gridSizeX = Mathf.RoundToInt(gridWorldSize.x / nodeDiameter);
         gridSizeY = Mathf.RoundToInt(gridWorldSize.y / nodeDiameter);
@@ -179,55 +181,80 @@ public class GameGrid : MonoBehaviour
         return NeighboringNodes;
     }
 
-    public Node GetNonWallNeighbor(Node n)
+    public Node GetNonWallNeighbor(Node n, Vector3 target)
     {
-        Node right = grid[n.gridX + 1, n.gridY];
-        if (!right.IsWall)
+        if (n.gridX + 1 < gridSizeX)
         {
-            return right;
+            Node right = grid[n.gridX + 1, n.gridY];
+            if (!right.IsWall && gm.IsInDirectSight(target, right.Position))
+            {
+                return right;
+            }
         }
-
-        Node left = grid[n.gridX - 1, n.gridY];
-        if (!left.IsWall)
+    
+        if (n.gridX - 1 >= 0)
         {
-            return left;
+            Node left = grid[n.gridX - 1, n.gridY];
+            if (!left.IsWall && gm.IsInDirectSight(target, left.Position))
+            {
+                return left;
+            }
         }
-
-        Node up = grid[n.gridX, n.gridY + 1];
-        if (!up.IsWall)
+        
+        if (n.gridY + 1 < gridSizeY)
         {
-            return up;
+            Node up = grid[n.gridX, n.gridY + 1];
+            if (!up.IsWall && gm.IsInDirectSight(target, up.Position))
+            {
+                return up;
+            }
         }
-
-        Node down = grid[n.gridX, n.gridY - 1];
-        if (!down.IsWall)
+        
+        if (n.gridY - 1 >= 0)
         {
-            return down;
+            Node down = grid[n.gridX, n.gridY - 1];
+            if (!down.IsWall && gm.IsInDirectSight(target, down.Position))
+            {
+                return down;
+            }
         }
-
-        Node upRight = grid[n.gridX + 1, n.gridY + 1];
-        if (!upRight.IsWall)
+        
+        if (n.gridX + 1 < gridSizeX && n.gridY < n.gridY + 1)
         {
-            return upRight;
+            Node upRight = grid[n.gridX + 1, n.gridY + 1];
+            if (!upRight.IsWall && gm.IsInDirectSight(target, upRight.Position))
+            {
+                return upRight;
+            }
         }
-
-        Node upLeft = grid[n.gridX - 1, n.gridY + 1];
-        if (!upLeft.IsWall)
+        
+        if (n.gridX - 1 >= 0 && n.gridY + 1 < gridSizeY)
         {
-            return upLeft;
+            Node upLeft = grid[n.gridX - 1, n.gridY + 1];
+            if (!upLeft.IsWall && gm.IsInDirectSight(target, upLeft.Position))
+            {
+                return upLeft;
+            }
         }
-
-        Node downRight = grid[n.gridX + 1, n.gridY - 1];
-        if (!downRight.IsWall)
+        
+        if (n.gridX + 1 < gridSizeX && n.gridY - 1 >= 0)
         {
-            return downRight;
+            Node downRight = grid[n.gridX + 1, n.gridY - 1];
+            if (!downRight.IsWall && gm.IsInDirectSight(target, downRight.Position))
+            {
+                return downRight;
+            }
         }
-
-        Node downLeft = grid[n.gridX - 1, n.gridY - 1];
-        if (!downLeft.IsWall)
+        
+        if (n.gridX - 1 >= 0 && n.gridY - 1 >= 0)
         {
-            return downLeft;
+            Node downLeft = grid[n.gridX - 1, n.gridY - 1];
+            if (!downLeft.IsWall && gm.IsInDirectSight(target, downLeft.Position))
+            {
+                return downLeft;
+            }
         }
+        
 
         return n;
     }
