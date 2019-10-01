@@ -53,4 +53,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level5Success.unity
     guid: c10b483b3b657f74fb125a5bb355c0ff
+  - enabled: 1
+    path: Assets/Scenes/TutorialScene.unity
+    guid: 295d6dbe6a4e40f4b9a52b9034c7254e
+  - enabled: 1
+    path: Assets/Scenes/TutorialSuccess.unity
+    guid: 632e23e08fbefc84aacf1f5a98a3c6ad
   m_configObjects: {}

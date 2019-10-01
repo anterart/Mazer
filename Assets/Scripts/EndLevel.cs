@@ -20,8 +20,14 @@ public class EndLevel : MonoBehaviour
                     PlayerPrefs.SetInt("HIGHEST_LEVEL", MainMenu.highestLevelReached);
                     PlayerPrefs.SetInt("HIGHEST_SCENE", MainMenu.highetSceneReached);
                 }
-                // load level success scene
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+                if (SceneManager.GetActiveScene().buildIndex == 16)
+                {
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                }
+                else
+                {
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+                }
             }
             else
             {
