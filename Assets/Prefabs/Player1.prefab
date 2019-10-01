@@ -95,6 +95,11 @@ MonoBehaviour:
     type: 3}
   isBeingShot: 0
   isHuman: 0
+  audioSrc: {fileID: 0}
+  hurt: {fileID: 8300000, guid: 62d2113a07d0f7e438a9dcd317302232, type: 3}
+  hurtSounds:
+  - {fileID: 8300000, guid: 62d2113a07d0f7e438a9dcd317302232, type: 3}
+  - {fileID: 8300000, guid: 0d6dba701ca68f24a9282669f76990bf, type: 3}
   mainCameraOffset: {x: 0, y: 8, z: -10}
   mainCameraRotationOffset: {x: 42.763, y: 0, z: 0.004}
 --- !u!114 &1589930789770936883
