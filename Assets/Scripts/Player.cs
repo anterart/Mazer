@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     public bool isHuman;
     public AudioSource audioSrc;
     public AudioClip[] hurtSounds;
+    public GameObject flagOwner;
     // Start is called before the first frame update
 
     protected virtual void Awake()
@@ -31,6 +32,8 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         playerPosition = transform.position;
         startingPlyerPosition = transform.position;
+        flagOwner = transform.Find("FlagOwner").gameObject;
+        flagOwner.SetActive(false);
     }
 
     // Update is called once per frame

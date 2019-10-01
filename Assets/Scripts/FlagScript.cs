@@ -39,6 +39,7 @@ public class FlagScript : MonoBehaviour
             gm.doorPosition = doors.transform.GetChild(doorNumber).position;
             gm.Door = doors.transform.GetChild(doorNumber).gameObject;
             doors.transform.GetChild(doorNumber).gameObject.SetActive(true);
+            collider.GetComponent<Player>().flagOwner.SetActive(true);
         }
     }
 }
