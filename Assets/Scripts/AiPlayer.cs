@@ -13,16 +13,31 @@ public class AiPlayer : Player
     protected override void Awake()
     {
         base.Awake();
-        moveSpeed = 300f;
         prefab = gm.GetComponent<GameManager>().aiPlayer;
         isHuman = false;
         anim = GetComponentInChildren<Animator>();
     }
 
+    protected override void Start()
+    {
+        base.Start();
+        moveSpeed = 300f;
+        if (gm.isTutorial)
+        {
+            moveSpeed = 0f;
+            shootingRadiusThreshold = 7f;
+            shootingDelayInSeconds = 2f;
+            shootingNoiseFactor = 10f;
+        }
+    }
+
 
     protected override void Move()
     {
-        anim.SetBool("walking", true);
+        if (!gm.isTutorial)
+        {
+            anim.SetBool("walking", true);
+        }
         Vector3 startPosition = transform.position;
         grid.StartPosition = transform;
         Vector3 targetPosition = GetTargetPosition();

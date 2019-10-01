@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public LayerMask WallMask;
     public int playersLayer;
     public static int nextScence = 0;
+    public bool isTutorial;
     
     private void Awake()
     {

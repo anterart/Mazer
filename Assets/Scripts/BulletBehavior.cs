@@ -81,8 +81,12 @@ public class BulletBehavior : MonoBehaviour
                     AudioSource.PlayClipAtPoint(colliderPlayer.hurtSounds[random.Next(colliderPlayer.hurtSounds.Length)], collider.transform.position);
                     Destroy(collider.gameObject);
                     Vector3 randomPosition = grid.GetRandomFreeNode();
-                    GameObject newPlayer = Instantiate(colliderPlayer.prefab, new Vector3(randomPosition.x, collider.transform.position.y, randomPosition.z), Quaternion.identity) as GameObject;
-                    newPlayer.transform.SetParent(gm.players.transform);
+                    if (!gm.isTutorial || colliderPlayer.isHuman)
+                    {
+                        GameObject newPlayer = Instantiate(colliderPlayer.prefab, new Vector3(randomPosition.x, collider.transform.position.y, randomPosition.z), Quaternion.identity) as GameObject;
+                        newPlayer.transform.SetParent(gm.players.transform);
+                    }
+                    
                 }
                 collider.GetComponent<Player>().isBeingShot = false;
             }
