@@ -7,6 +7,7 @@ public class FlagScript : MonoBehaviour
     private float rotationSpeed = 2f;
     GameObject doors;
     GameManager gm;
+    private bool isColliding = false;
 
     private void Awake()
     {
@@ -28,8 +29,9 @@ public class FlagScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
-        if (collider.gameObject.tag == "Player")
+        if (collider.gameObject.tag == "Player" && !isColliding)
         {
+            isColliding = true;
             Destroy(gameObject);
             collider.GetComponent<Player>().isFlagPicked = true;
             gm.picked = true;
