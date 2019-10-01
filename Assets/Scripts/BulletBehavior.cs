@@ -62,11 +62,11 @@ public class BulletBehavior : MonoBehaviour
                         }
                         gm.flagOwner = null;
                         Vector3 newFlagPosition = collider.transform.position;
-                        Node playerPositionNode = grid.NodeFromWorldPosition(newFlagPosition);
-                        if (playerPositionNode.IsWall)
-                        {
-                            newFlagPosition = grid.GetNonWallNeighbor(playerPositionNode, collider.transform.position).Position;
-                        }
+                        //Node playerPositionNode = grid.NodeFromWorldPosition(newFlagPosition);
+                        //if (playerPositionNode.IsWall)
+                        //{
+                        //    newFlagPosition = grid.GetNonWallNeighbor(playerPositionNode, collider.transform.position).Position;
+                        //}
                         newFlagPosition.y = 1.52f;
                         GameObject flag = Instantiate(gm.flagPrefab, newFlagPosition, Quaternion.identity) as GameObject;
                         flag.name = "Flag";
