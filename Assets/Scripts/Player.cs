@@ -19,16 +19,20 @@ public class Player : MonoBehaviour
     public AudioSource audioSrc;
     public AudioClip[] hurtSounds;
     public GameObject flagOwner;
+    protected GameGrid grid;
+    protected GameObject gmObject;
     // Start is called before the first frame update
 
     protected virtual void Awake()
     {
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
         audioSrc = GetComponent<AudioSource>();
+        gmObject = GameObject.Find("GameManager");
     }
 
     protected virtual void Start()
     {
+        grid = gmObject.GetComponent<GameGrid>();
         rb = GetComponent<Rigidbody>();
         playerPosition = transform.position;
         startingPlyerPosition = transform.position;
@@ -61,5 +65,24 @@ public class Player : MonoBehaviour
         GameObject bullet = Instantiate(bulletPrefab, transform.position + new Vector3(0f, 0.5f, 0), Quaternion.identity) as GameObject;
         bullet.GetComponent<Rigidbody>().velocity = dir * bulletSpeed;
         bullet.GetComponent<BulletBehavior>().owner = gameObject;
+    }
+
+    public Vector3 GetTargetPosition()
+    {
+        if (gm.picked)
+        {
+            if (GameObject.ReferenceEquals(gm.flagOwner, gameObject))
+            {
+                grid.TargetPosition = gm.Door.transform;
+                return gm.doorPosition;
+            }
+            if (gm.flagOwner != null)
+            {
+                grid.TargetPosition = gm.flagOwner.transform;
+                return gm.flagOwner.transform.position;
+            }
+        }
+        grid.TargetPosition = GameObject.Find("Flag").transform;
+        return GameObject.Find("Flag").gameObject.transform.position;
     }
 }

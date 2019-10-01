@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class AiPlayer : Player
 {
-    GameGrid grid;
-    GameObject gmObject;
     public static float shootingRadiusThreshold = 17f;
     public static float shootingDelayInSeconds = 1f;
     public static float shootingNoiseFactor = 5f;
@@ -16,8 +14,6 @@ public class AiPlayer : Player
     {
         base.Awake();
         moveSpeed = 300f;
-        gmObject = GameObject.Find("GameManager");
-        grid = gmObject.GetComponent<GameGrid>();
         prefab = gm.GetComponent<GameManager>().aiPlayer;
         isHuman = false;
         anim = GetComponentInChildren<Animator>();
@@ -57,25 +53,6 @@ public class AiPlayer : Player
             Vector3 lookAt = new Vector3(targetPosition.x, transform.position.y, targetPosition.z);
             transform.LookAt(lookAt);
         }
-    }
-
-    private Vector3 GetTargetPosition()
-    {
-        if (gm.picked)
-        {
-            if (GameObject.ReferenceEquals(gm.flagOwner, gameObject))
-                {
-                grid.TargetPosition = gm.Door.transform;
-                return gm.doorPosition;
-                }
-            if (gm.flagOwner != null)
-            {
-                grid.TargetPosition = gm.flagOwner.transform;
-                return gm.flagOwner.transform.position;
-            }
-        }
-        grid.TargetPosition = GameObject.Find("Flag").transform;
-        return GameObject.Find("Flag").gameObject.transform.position;
     }
 
     protected override void Shoot()
