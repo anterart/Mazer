@@ -193,6 +193,10 @@ MonoBehaviour:
   flagOwner: {fileID: 0}
   mainCameraOffset: {x: 0, y: 8, z: -10}
   mainCameraRotationOffset: {x: 42.763, y: 0, z: 0.004}
+  redArrow: {fileID: 21300000, guid: 5725c2b1cc024bf4a921f4506dba795a, type: 3}
+  yellowArrow: {fileID: 21300000, guid: 1d1ab0af5bcfb714691c9bff7eba78a4, type: 3}
+  blueArrow: {fileID: 21300000, guid: 4d2bb48f4988b5c478bfd0853b9aa7eb, type: 3}
+  edgeBuffer: 50
 --- !u!114 &1589930789770936883
 MonoBehaviour:
   m_ObjectHideFlags: 0

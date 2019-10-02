@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class HumanPlayer : Player
 {
@@ -11,10 +12,16 @@ public class HumanPlayer : Player
     float moveX, moveZ;
     Animator anim;
     private Vector3 lastDirection;
+    private RectTransform pointerRectTransform;
+    public Sprite redArrow;
+    public Sprite yellowArrow;
+    public Sprite blueArrow;
+    public float edgeBuffer;
 
     protected override void Awake()
     {
         base.Awake();
+        pointerRectTransform = GameObject.Find("Canvas").transform.Find("PointerHolder").Find("Pointer").GetComponent<RectTransform>();
         moveSpeed = 300f;
         isHuman = true;
     }
@@ -31,6 +38,7 @@ public class HumanPlayer : Player
     {
         base.Update();
         MoveCamera();
+        UpdatePointer();
     }
 
     protected override void Move()
@@ -134,4 +142,66 @@ public class HumanPlayer : Player
     {
         Camera.main.transform.position = transform.position + mainCameraOffset;
     }
+
+    private void UpdatePointer()
+    {
+        if (GameObject.ReferenceEquals(gm.flagOwner, gameObject))
+        {
+            pointerRectTransform.GetComponent<Image>().sprite = yellowArrow;
+        }
+        else if (gm.picked)
+        {
+            pointerRectTransform.GetComponent<Image>().sprite = blueArrow;
+        }
+        else
+        {
+            pointerRectTransform.GetComponent<Image>().sprite = redArrow;
+        }
+        Vector3 toPosition = GetTargetPosition();
+        Vector3 newPos = Camera.main.WorldToViewportPoint(toPosition);
+        bool outOfScreen = false;
+        if (newPos.x > 1 || newPos.y > 1 || newPos.x < 0 || newPos.y < 0)
+        {
+            outOfScreen = true;
+        }
+        if (newPos.z < 0)
+        {
+            newPos.x = 1f - newPos.x;
+            newPos.y = 1f - newPos.y;
+            newPos.z = 0f;
+            newPos = Vector3Maximize(newPos);
+        }
+        newPos = Camera.main.ViewportToScreenPoint(newPos);
+        newPos.x = Mathf.Clamp(newPos.x, edgeBuffer, Screen.width - edgeBuffer);
+        newPos.y = Mathf.Clamp(newPos.y, edgeBuffer, Screen.height - edgeBuffer);
+        pointerRectTransform.position = newPos;
+        if (outOfScreen)
+        {
+            pointerRectTransform.gameObject.SetActive(true);
+            Vector3 targetPosLocal = Camera.main.transform.InverseTransformPoint(toPosition);
+            float targetAngle = -Mathf.Atan2(targetPosLocal.x, targetPosLocal.y) * Mathf.Rad2Deg + 90;
+            pointerRectTransform.eulerAngles = new Vector3(0, 0, targetAngle);
+        }
+        else
+        {
+            pointerRectTransform.gameObject.SetActive(false);
+        }
+        
+    }
+
+    private Vector3 Vector3Maximize(Vector3 vector)
+    {
+        Vector3 returnVector = vector;
+        float max = 0;
+        max = vector.x > max ? vector.x : max;
+        max = vector.y > max ? vector.y : max;
+        max = vector.z > max ? vector.z : max;
+        if (max > 0)
+        {
+            returnVector /= max;
+        }
+        return returnVector;
+    }
+
+
 }
