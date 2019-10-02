@@ -8,7 +8,7 @@ public class HumanPlayer : Player
 {
     public Vector3 mainCameraOffset;
     public Vector3 mainCameraRotationOffset;
-    FixedJoystick joystick;
+    public FixedJoystick joystick;
     float moveX, moveZ;
     Animator anim;
     private Vector3 lastDirection;
@@ -17,6 +17,7 @@ public class HumanPlayer : Player
     public Sprite yellowArrow;
     public Sprite blueArrow;
     public float edgeBuffer;
+    public bool hasFired;
 
     protected override void Awake()
     {
@@ -24,6 +25,7 @@ public class HumanPlayer : Player
         pointerRectTransform = GameObject.Find("Canvas").transform.Find("PointerHolder").Find("Pointer").GetComponent<RectTransform>();
         moveSpeed = 300f;
         isHuman = true;
+        hasFired = false;
     }
     protected override void Start()
     {
@@ -103,6 +105,7 @@ public class HumanPlayer : Player
                     if (plane.Raycast(ray, out distance))
                     { // if plane hit...
                         anim.SetBool("shoot", true);
+                        hasFired = true;
                         Invoke("setShootFalse", 0.7f);
                         Vector3 touchPos = ray.GetPoint(distance); // get the point
                                                                    // pos has the position in the plane you've touched  
@@ -124,6 +127,7 @@ public class HumanPlayer : Player
                 if (plane.Raycast(ray, out distance))
                 { // if plane hit...
                     anim.SetBool("shoot", true);
+                    hasFired = true;
                     Invoke("setShootFalse", 0.7f);
                     Vector3 touchPos = ray.GetPoint(distance); // get the point
                                                                // pos has the position in the plane you've touched  
