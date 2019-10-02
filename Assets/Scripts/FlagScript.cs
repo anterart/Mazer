@@ -32,7 +32,6 @@ public class FlagScript : MonoBehaviour
         if (collider.gameObject.tag == "Player" && !isColliding)
         {
             isColliding = true;
-            Destroy(gameObject);
             collider.GetComponent<Player>().isFlagPicked = true;
             gm.picked = true;
             gm.flagOwner = collider.gameObject;
@@ -42,6 +41,7 @@ public class FlagScript : MonoBehaviour
             gm.Door = doors.transform.GetChild(doorNumber).gameObject;
             doors.transform.GetChild(doorNumber).gameObject.SetActive(true);
             collider.GetComponent<Player>().flagOwner.SetActive(true);
+            Destroy(gameObject);
         }
     }
 }
