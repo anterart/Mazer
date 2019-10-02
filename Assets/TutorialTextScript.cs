@@ -55,7 +55,7 @@ public class TutorialTextScript : MonoBehaviour
                 }
                 if (flagTaken)
                 {
-                    text.text = "Very good! In the real game, enemies will run and shoot you from greater distances and will respawn at random locations on map after death. Try to take the flag first, kill enemies, don't die yourself and find a yellow portal once you have the flag. If an enemy has the flag, he will be marked with flag sign above him, as you are now and you will have to kill him to obtain it, before he reaches the exit portal. Use the arrow to navigate to your target. Now, proceed to the yellow portal to finish this tutorial!";
+                    text.text = "Very good! In the real game, enemies will run and shoot you from greater distances and will be respawned at random location on map once being killed. Your job is to take the flag first, kill enemies, not get killed yourself and run toward the yellow portal once you get the flag. If an enemy takes the flag, he will be marked with flag sign above him, as you are now and you will have to kill him to obtain it, before he reaches the exit portal. Remember to use the colored arrows to navigate to the current destination. Now, proceed to the yellow portal to finish this tutorial and begin your advanture! Good luck!";
                 }
             }
         }
