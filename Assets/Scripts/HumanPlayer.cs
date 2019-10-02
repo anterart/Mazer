@@ -108,6 +108,7 @@ public class HumanPlayer : Player
                                                                 // pos has the position in the plane you've touched  
                     base.ShootHelper(touchPos);
                 }
+                break;
             }
         }    
     }
