@@ -89,37 +89,12 @@ public class HumanPlayer : Player
 
     protected override void Shoot()
     {
-        if (Input.touchCount == 1)
+        foreach (Touch touch in Input.touches)
         {
-
-            if (Input.GetTouch(0).phase == TouchPhase.Began && !EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
-            {
-                if (joystick.Horizontal == 0f && joystick.Vertical == 0f)
-                {
-                    // create ray from the camera and passing through the touch position:
-                    Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
-                    // create a logical plane at this object's position
-                    // and perpendicular to world Y:
-                    Plane plane = new Plane(Vector3.up, transform.position);
-                    float distance = 0; // this will return the distance from the camera
-                    if (plane.Raycast(ray, out distance))
-                    { // if plane hit...
-                        anim.SetBool("shoot", true);
-                        hasFired = true;
-                        Invoke("setShootFalse", 0.7f);
-                        Vector3 touchPos = ray.GetPoint(distance); // get the point
-                                                                   // pos has the position in the plane you've touched  
-                        base.ShootHelper(touchPos);
-                    }
-                }
-            }
-        }
-        else if (Input.touchCount == 2)
-        {
-            if (Input.GetTouch(1).phase == TouchPhase.Began && !EventSystem.current.IsPointerOverGameObject(Input.GetTouch(1).fingerId))
+            if (!EventSystem.current.IsPointerOverGameObject(touch.fingerId) && touch.phase == TouchPhase.Began)
             {
                 // create ray from the camera and passing through the touch position:
-                Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(1).position);
+                Ray ray = Camera.main.ScreenPointToRay(touch.position);
                 // create a logical plane at this object's position
                 // and perpendicular to world Y:
                 Plane plane = new Plane(Vector3.up, transform.position);
@@ -130,11 +105,11 @@ public class HumanPlayer : Player
                     hasFired = true;
                     Invoke("setShootFalse", 0.7f);
                     Vector3 touchPos = ray.GetPoint(distance); // get the point
-                                                               // pos has the position in the plane you've touched  
+                                                                // pos has the position in the plane you've touched  
                     base.ShootHelper(touchPos);
                 }
             }
-        }
+        }    
     }
 
     private void setShootFalse()
