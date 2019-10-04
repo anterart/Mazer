@@ -9,6 +9,7 @@ public class AiPlayer : Player
     public static float shootingNoiseFactor = 5f;
     private float shootingTimePassed = 0;
     Animator anim;
+    GameObject closestEnemy;
 
     protected override void Awake()
     {
@@ -29,6 +30,15 @@ public class AiPlayer : Player
             shootingDelayInSeconds = 2f;
             shootingNoiseFactor = 10f;
         }
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+        if (closestEnemy != null)
+        {
+            transform.LookAt(closestEnemy.transform.position);
+        }     
     }
 
 
@@ -79,13 +89,18 @@ public class AiPlayer : Player
             if (theySeeMe.Count > 0)
             {
                 theySeeMe.Sort((x, y) => Vector3.Distance(gameObject.transform.position, x.transform.position).CompareTo(Vector3.Distance(gameObject.transform.position, y.transform.position)));
-                GameObject closestEnemy = theySeeMe[0];
+                closestEnemy = theySeeMe[0];
                 if (Vector3.Distance(closestEnemy.transform.position, gameObject.transform.position) <= shootingRadiusThreshold)
                 {
                     float shootingNoiseX = Random.Range(- shootingNoiseFactor / 2, shootingNoiseFactor / 2);
                     float shootingNoiseZ = Random.Range(-shootingNoiseFactor / 2, shootingNoiseFactor / 2);
                     Vector3 shootingNoise = new Vector3(shootingNoiseX, 0, shootingNoiseZ);
                     base.ShootHelper(closestEnemy.transform.position + shootingNoise);
+                    if (gm.isTutorial)
+                    {
+                        anim.SetBool("shoot", true);
+                        Invoke("setShootFalse", 0.7f);
+                    }
                 }
             }
         }
@@ -93,5 +108,10 @@ public class AiPlayer : Player
         {
             shootingTimePassed += Time.deltaTime;
         }
+    }
+
+    private void setShootFalse()
+    {
+        anim.SetBool("shoot", false);
     }
 }
