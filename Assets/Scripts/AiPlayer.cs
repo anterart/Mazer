@@ -35,7 +35,7 @@ public class AiPlayer : Player
     protected override void Update()
     {
         base.Update();
-        if (closestEnemy != null)
+        if (closestEnemy != null && gm.isTutorial)
         {
             transform.LookAt(closestEnemy.transform.position);
         }     
