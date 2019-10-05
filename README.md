@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="miscellaneous/Logo.PNG" alt="Maze Fighter"/>
+  <a href="#"><img src="miscellaneous/Logo.PNG" alt="Maze Fighter"/></a>
 </p>
 
 Maze Fighter is a fun little action mobile game we made using Unity. <br>
@@ -15,15 +15,15 @@ AI agents control similar characters to yours. They use an A* pathfinding algori
 
 
 ### Screnshots 
-![Game logo](miscellaneous/1.jpeg)
-![Game logo](miscellaneous/2.jpeg)
-![Game logo](miscellaneous/3.jpeg)
-![Game logo](miscellaneous/4.jpeg)
-![Game logo](miscellaneous/5.jpeg)
-![Game logo](miscellaneous/6.jpeg)
-![Game logo](miscellaneous/7.jpeg)
-![Game logo](miscellaneous/8.jpeg)
-![Game logo](miscellaneous/9.jpeg)
+[![Game logo](miscellaneous/1.jpeg)(#)]
+[![Game logo](miscellaneous/2.jpeg)(#)]
+[![Game logo](miscellaneous/3.jpeg)(#)]
+[![Game logo](miscellaneous/4.jpeg)(#)]
+[![Game logo](miscellaneous/5.jpeg)(#)]
+[![Game logo](miscellaneous/6.jpeg)(#)]
+[![Game logo](miscellaneous/7.jpeg)(#)]
+[![Game logo](miscellaneous/8.jpeg)(#)]
+[![Game logo](miscellaneous/9.jpeg)(#)]
  
 ### Credits
 
