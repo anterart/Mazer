@@ -14,7 +14,7 @@ public class TutorialTextScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        text.text = "Welcome! In this tutorial you will learn some basics needed in order to be a true maze fighter! Touch the buttom left jotstick to begin!";
+        text.text = "Welcome! \n In this tutorial you will learn some basics needed in order to be a true MAZE FIGHTER! \n Touch the jotstick located on the bottom left of your screen to move!";
     }
 
     // Update is called once per frame
@@ -28,7 +28,7 @@ public class TutorialTextScript : MonoBehaviour
             }
             if (joysticTouched)
             {
-                text.text = "Good! As you can see, you will use this joystick to move in the game. You can fire at position by pressing it's location on the ground, try this now!";
+                text.text = "Good! \n From now on use this joystick to move in the game. \n Now try to use your gun to shoot. \n Touch your screen in the direction you want to shoot now.";
             }
         }
         if (joysticTouched)
@@ -41,7 +41,7 @@ public class TutorialTextScript : MonoBehaviour
                 }
                 if (shotsFired)
                 {
-                    text.text = "Excellent! Now look, there is an enemy in the center of the map! He is not moving but will shoot you if you get close, so be careful! Shoot him several times to Kill him and take the flag he carries! The colored arrow will point you with the right direction to go, if your destination is not currently present on the screen.";
+                    text.text = "Excellent! \n Now look, there is an enemy in the center of the map! \n He is not moving but will shoot you if you get too close, so be careful! \n Shoot him several times to Kill him and take the flag he carries! \n The colored arrow points you to the direction you need to go if your destination is not currently present on the screen.";
                 }
             }
         }
@@ -55,7 +55,7 @@ public class TutorialTextScript : MonoBehaviour
                 }
                 if (flagTaken)
                 {
-                    text.text = "Very good! In the real game, enemies will run and shoot you from greater distances and will be respawned at random location on map once being killed. Your job is to take the flag first, kill enemies, not get killed yourself and run toward the yellow portal once you get the flag. If an enemy takes the flag, he will be marked with flag sign above him, as you are now and you will have to kill him to obtain it, before he reaches the exit portal. Remember to use the colored arrows to navigate to the current destination. Now, proceed to the yellow portal to finish this tutorial and begin your advanture! Good luck!";
+                    text.text = "Very good! \n In the real game enemies will run and shoot at you. \n You and your enemies will respawn at random locations on the map after death. \n Your mission is to capture the flag and reach the yellow portal first. \n If one captures the flag, he will be marked with flag sign above his head. \n If one has the flag and die, the flag will be dropped at the same spot where the death has occured. \n Remember to use the colored arrow to ease your navigation around the map. \n Now, proceed to the yellow portal to finish this tutorial and begin your advanture! \n Good luck!";
                 }
             }
         }
