@@ -1,13 +1,11 @@
-# Maze Fighter
-
 <p align="center">
   <img src="miscellaneous/Logo.PNG" alt="Maze Fighter"/>
 </p>
 
-Maze Fighter is a fun little action mobile game we made using Unity.
-The game has 5 levels, each with different design.
-In every level the objective is to capture a flag and escape the level using a portal.
-To make it interesting we implemented AI agents that play against you.
+Maze Fighter is a fun little action mobile game we made using Unity. <br>
+The game has 5 levels, each with different design. <br>
+In every level the objective is to capture a flag and escape the level using a portal. <br>
+To make it interesting we implemented AI agents that play against you. <br>
 AI agents control similar characters to yours. They use an A* pathfinding algorithm to move around. It's possible to customize their difficulty in the game. Depending on the chosen difficulty. Depending on the chosen difficulty, the agents will have different:
   - Sight radius
   - Shooting accuracy
