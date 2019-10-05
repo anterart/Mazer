@@ -1,7 +1,7 @@
 # Maze Fighter
 
 <p align="center">
-  <img src="miscellaneous/Logo.jpeg" alt="Maze Fighter"/>
+  <img src="miscellaneous/Logo.PNG" alt="Maze Fighter"/>
 </p>
 
 Maze Fighter is a fun little action mobile game we made using Unity.
