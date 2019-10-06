@@ -13,6 +13,8 @@ AI agents control similar characters to yours. They use an A* pathfinding algori
  
 ### Link to our paper prototype:
 
+https://drive.google.com/open?id=1qCv_mtXwTsOjIrZd9W1URyVAqLIjgk27
+
 
 ### Screnshots 
 [![Game logo](miscellaneous/1.jpeg)](#)
