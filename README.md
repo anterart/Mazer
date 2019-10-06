@@ -10,6 +10,8 @@ AI agents control similar characters to yours. They use an A* pathfinding algori
   - Sight radius
   - Shooting accuracy
   - Shooting cooldown interval
+### Link to our presentation:
+https://docs.google.com/presentation/d/1EGii3mEeL01J-_Z2eEfzfSAxUGStNIOjSUF5ihs82w8/edit#slide=id.g5196c78544_0_0
  
 ### Link to our paper prototype:
 
