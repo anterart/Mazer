@@ -15,6 +15,10 @@ AI agents control similar characters to yours. They use an A* pathfinding algori
 
 https://drive.google.com/open?id=1qCv_mtXwTsOjIrZd9W1URyVAqLIjgk27
 
+### Link to personas:
+
+https://drive.google.com/open?id=1lFN7XCIUyyMY8YIz1pWhXbOPxoUnmPjQVNvG0NX4als
+
 
 ### Screnshots 
 [![Game logo](miscellaneous/1.jpeg)](#)
